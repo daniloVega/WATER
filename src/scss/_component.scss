@@ -1,0 +1,23 @@
+body {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+.wrap {
+	padding: 50px;
+}
+
+p {
+	color: #000;
+}
+
+.test {
+	font-size: 15px;
+	appearance: none;
+	transform: translate(0);
+}
+
+img {
+	max-width: 100%;
+}
