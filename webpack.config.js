@@ -12,15 +12,15 @@ let copyPaterns = [
 		to: path.resolve(__dirname, './dist/assets')
 	},
 	{
-		from: './favicon.ico',
+		from: './src/favicon.ico',
 		to: path.resolve(__dirname, './dist')
 	},
 ];
-const pages = fs.readdirSync(path.resolve(__dirname, ''));
+const pages = fs.readdirSync('./src');
 pages.forEach(page => {
 	if (page.endsWith('.html')) {
 		copyPaterns.push({
-			from: `./${page}`,
+			from: `./src/${page}`,
 			to: path.resolve(__dirname, `./dist/${page}`)
 		});
 	}
