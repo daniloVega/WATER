@@ -4,9 +4,8 @@ const IconfontPlugin = require('iconfont-plugin-webpack');
 const CopyPlugin = require('copy-webpack-plugin');
 
 const path = require('path');
-const fs = require('fs');
 
-let copyPaterns = [
+const copyPaterns = [
 	{
 		from: './src/assets',
 		to: path.resolve(__dirname, './dist/assets')
@@ -15,22 +14,22 @@ let copyPaterns = [
 		from: './src/favicon.ico',
 		to: path.resolve(__dirname, './dist')
 	},
+	{
+		from: '*.html',
+		to: path.resolve(__dirname, './dist'),
+		context: './src/',
+	},
 ];
-const pages = fs.readdirSync('./src');
-pages.forEach(page => {
-	if (page.endsWith('.html')) {
-		copyPaterns.push({
-			from: `./src/${page}`,
-			to: path.resolve(__dirname, `./dist/${page}`)
-		});
-	}
-});
 
 module.exports = {
 	mode: 'development',
+	output: {
+		filename: 'js/script.js',
+		path: path.resolve(__dirname, 'dist'),
+	},
 	entry: [
 		'./src/scss/style.scss',
-		'./src/js/script.js'
+		'./src/js/script.js',
 	],
 	module: {
 		rules: [{
@@ -57,10 +56,6 @@ module.exports = {
 			]
 		},],
 	},
-	output: {
-		filename: 'js/script.js',
-		path: path.resolve(__dirname, 'dist'),
-	},
 	plugins: [
 		new MiniCssExtractPlugin({
 			filename: "css/style.css"
@@ -71,6 +66,7 @@ module.exports = {
 		new IconfontPlugin({
 			src: './src/assets/svg',
 			family: 'icon-font',
+			prefix: 'icon-',
 			dest: {
 				font: './src/assets/fonts/[family].[type]',
 				css: './src/scss/_icon-font.scss',
@@ -83,5 +79,5 @@ module.exports = {
 		new CopyPlugin({
 			patterns: copyPaterns
 		})
-	]
+	],
 }
