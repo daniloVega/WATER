@@ -66,7 +66,6 @@ module.exports = {
 		new IconfontPlugin({
 			src: './src/assets/svg',
 			family: 'icon-font',
-			prefix: 'icon-',
 			dest: {
 				font: './src/assets/fonts/[family].[type]',
 				css: './src/scss/_icon-font.scss',
