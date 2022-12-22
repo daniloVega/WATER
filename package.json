@@ -1,7 +1,8 @@
 {
-  "name": "sp-test2",
+  "name": "vega-it-internship-starter",
   "version": "1.0.0",
-  "description": "",
+  "description": "VegaIT Front-end Internship Starter",
+  "author": "VegaIT",
   "main": "webpack.config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,7 +11,6 @@
     "watch": "webpack --watch --mode development"
   },
   "keywords": [],
-  "author": "",
   "license": "ISC",
   "devDependencies": {
     "autoprefixer": "^10.4.13",

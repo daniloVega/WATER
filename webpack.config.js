@@ -23,14 +23,14 @@ const copyPaterns = [
 
 module.exports = {
 	mode: 'development',
-	output: {
-		filename: 'js/script.js',
-		path: path.resolve(__dirname, 'dist'),
-	},
 	entry: [
 		'./src/scss/style.scss',
 		'./src/js/script.js',
 	],
+	output: {
+		filename: 'js/script.js',
+		path: path.resolve(__dirname, 'dist'),
+	},
 	module: {
 		rules: [{
 			test: /\.scss$/,
