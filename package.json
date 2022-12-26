@@ -1,34 +1,34 @@
 {
-  "name": "vega-it-internship-starter",
-  "version": "1.0.0",
-  "description": "VegaIT Front-end Internship Starter",
-  "author": "VegaIT",
-  "main": "webpack.config.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --mode development",
-    "prod": "webpack --mode production",
-    "watch": "webpack --watch --mode development"
-  },
-  "keywords": [],
-  "license": "ISC",
-  "devDependencies": {
-    "autoprefixer": "^10.4.13",
-    "copy-webpack-plugin": "^11.0.0",
-    "css-loader": "^6.7.3",
-    "iconfont-plugin-webpack": "^1.1.4",
-    "mini-css-extract-plugin": "^2.7.2",
-    "postcss": "^8.4.20",
-    "postcss-loader": "^7.0.2",
-    "sass": "^1.57.1",
-    "sass-loader": "^13.2.0",
-    "stylelint": "^14.16.0",
-    "stylelint-config-standard-scss": "^6.1.0",
-    "stylelint-webpack-plugin": "^3.3.0",
-    "webpack": "^5.75.0",
-    "webpack-cli": "^5.0.1"
-  },
-  "engines": {
-    "node": "18.12.1"
-  }
+	"name": "vega-it-internship-starter",
+	"version": "1.0.0",
+	"description": "VegaIT Front-end Internship Starter",
+	"author": "VegaIT",
+	"main": "webpack.config.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"build": "webpack --mode development",
+		"prod": "webpack --mode production",
+		"watch": "webpack --watch --mode development"
+	},
+	"keywords": [],
+	"license": "ISC",
+	"devDependencies": {
+		"autoprefixer": "^10.4.13",
+		"copy-webpack-plugin": "^11.0.0",
+		"css-loader": "^6.7.3",
+		"iconfont-plugin-webpack": "^1.1.4",
+		"mini-css-extract-plugin": "^2.7.2",
+		"postcss": "^8.4.20",
+		"postcss-loader": "^7.0.2",
+		"sass": "^1.57.1",
+		"sass-loader": "^13.2.0",
+		"stylelint": "^14.16.0",
+		"stylelint-config-standard-scss": "^6.1.0",
+		"stylelint-webpack-plugin": "^3.3.0",
+		"webpack": "^5.75.0",
+		"webpack-cli": "^5.0.1"
+	},
+	"engines": {
+		"node": "18.12.1"
+	}
 }
