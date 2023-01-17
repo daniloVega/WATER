@@ -44,3 +44,6 @@ CSS code quality is checked with [Sass Lint](https://github.com/sasstools/sass-l
 All scripts should be written in `src/js` directory.
 
 ---
+
+#### Important note
+This starter is the property of Vega IT and is used only for the purpose of the Internship process, therefore any use or distribution beyond this internship is prohibited.
