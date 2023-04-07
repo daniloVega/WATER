@@ -32,7 +32,6 @@ const copyPaterns = [
 
 webfontsGenerator({
 	files: allSvg,
-	//dest: `${dist}/assets/fonts/`,
 	dest: path.resolve(__dirname, 'src/assets/fonts/'),
 	types: ['woff2', 'woff', 'svg'],
 	fontName: 'svgicons',
