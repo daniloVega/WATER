@@ -1,9 +1,18 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const StylelintPlugin = require('stylelint-webpack-plugin');
-const IconfontPlugin = require('iconfont-plugin-webpack');
+const webfontsGenerator = require('@vusion/webfonts-generator');
 const CopyPlugin = require('copy-webpack-plugin');
 
 const path = require('path');
+const fs = require('fs');
+
+const dist =  path.resolve(__dirname, 'dist');
+
+const allSvg = [];
+const allSvgImages = fs.readdirSync('./src/assets/svg');
+allSvgImages.forEach(file => {
+	allSvg.push('./src/assets/svg/' + file);
+});
 
 const copyPaterns = [
 	{
@@ -21,6 +30,20 @@ const copyPaterns = [
 	},
 ];
 
+webfontsGenerator({
+	files: allSvg,
+	//dest: `${dist}/assets/fonts/`,
+	dest: path.resolve(__dirname, 'src/assets/fonts/'),
+	types: ['woff2', 'woff', 'svg'],
+	fontName: 'svgicons',
+	cssDest: './src/scss/_icon-font.scss',
+	cssFontsUrl: `../assets/fonts/`,
+	templateOptions: {
+		classPrefix: 'icon-',
+		baseSelector: '.icon',
+	}
+});
+
 module.exports = {
 	mode: 'development',
 	entry: [
@@ -29,7 +52,7 @@ module.exports = {
 	],
 	output: {
 		filename: 'js/script.js',
-		path: path.resolve(__dirname, 'dist'),
+		path: dist,
 	},
 	module: {
 		rules: [{
@@ -62,18 +85,6 @@ module.exports = {
 		}),
 		new StylelintPlugin({
 			configFile: '.stylelintrc.json',
-		}),
-		new IconfontPlugin({
-			src: './src/assets/svg',
-			family: 'icon-font',
-			dest: {
-				font: './src/assets/fonts/[family].[type]',
-				css: './src/scss/_icon-font.scss',
-			},
-			watch: {
-				pattern: './src/assets/svg/*.svg',
-				cwd: undefined
-			}
 		}),
 		new CopyPlugin({
 			patterns: copyPaterns
