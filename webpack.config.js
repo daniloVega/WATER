@@ -35,7 +35,7 @@ webfontsGenerator({
 	dest: path.resolve(__dirname, 'src/assets/fonts/'),
 	types: ['woff2', 'woff', 'svg'],
 	fontName: 'svgicons',
-	cssDest: './src/scss/_icon-font.scss',
+	cssDest: './src/scss/base/_icon-font.scss',
 	cssFontsUrl: `../assets/fonts/`,
 	templateOptions: {
 		classPrefix: 'icon-',

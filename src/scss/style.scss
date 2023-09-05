@@ -1,3 +1,2 @@
-@import 'reset';
-@import 'icon-font';
-@import 'component';
+@use 'base' as *;
+@use 'components' as *;

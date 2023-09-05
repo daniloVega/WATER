@@ -63,7 +63,7 @@
 		"alpha-value-notation": "number"
 	},
 	"ignoreFiles": [
-		"src/scss/_reset.scss",
-		"src/scss/_icon-font.scss"
+		"src/scss/base/_reset.scss",
+		"src/scss/base/_icon-font.scss"
 	]
 }
