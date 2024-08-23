@@ -1,0 +1,20 @@
+@use "variables";
+
+// Default container with mobile-first approach
+.container {
+	padding-left: 20px;
+	padding-right: 20px;
+	@media (min-width: variables.$breakpoint-lg) {
+		padding-left: 230px;
+		padding-right: 230px;
+	} 
+	&--wide{
+	padding-left: 20px;
+	padding-right: 20px;
+	@media (min-width: variables.$breakpoint-lg) {
+		padding-left: 430px;
+		padding-right: 430px;
+	}
+	}
+}
+

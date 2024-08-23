@@ -7,7 +7,7 @@
 	"scripts": {
 		"build": "webpack --mode development",
 		"prod": "webpack --mode production",
-		"watch": "webpack --watch --mode development"
+		"watch": "webpack-dev-server --port 4200"
 	},
 	"keywords": [],
 	"license": "ISC",
@@ -16,11 +16,12 @@
 		"autoprefixer": "^10.4.15",
 		"copy-webpack-plugin": "^11.0.0",
 		"css-loader": "^6.8.1",
+		"html-webpack-plugin": "^5.6.0",
 		"mini-css-extract-plugin": "^2.7.6",
 		"postcss": "^8.4.29",
 		"postcss-loader": "^7.3.3",
-		"sass": "^1.66.1",
-		"sass-loader": "^13.3.2",
+		"sass": "^1.77.8",
+		"sass-loader": "^16.0.1",
 		"stylelint": "^15.10.3",
 		"stylelint-config-standard-scss": "^11.0.0",
 		"stylelint-webpack-plugin": "^4.1.1",
@@ -30,5 +31,8 @@
 	},
 	"engines": {
 		"node": ">=18.12.1"
+	},
+	"dependencies": {
+		"webpack-dev-server": "^5.0.4"
 	}
 }

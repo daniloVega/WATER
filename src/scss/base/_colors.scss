@@ -1,0 +1,15 @@
+@use 'variables';
+.bg-primary { background-color: variables.$color-primary; }
+.bg-secondary { background-color: variables.$color-secondary; }
+.bg-white { background-color: variables.$color-white; }
+.bg-light { background-color: variables.$color-light; }
+
+.text-primary { color: variables.$color-primary; }
+.text-secondary { color: variables.$color-secondary; }
+.text-white { color: variables.$color-white; }
+.text-light { color: variables.$color-light; }
+
+.border-primary { border-color: variables.$color-primary; }
+.border-secondary { border-color: variables.$color-secondary; }
+.border-white { border-color: variables.$color-white; }
+.border-light { border-color: variables.$color-light; }
