@@ -1,39 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
-</head>
-<body>
-<header>
-	<div class="logo">
-		<img class="logo_img" src="./assets/images/logo.png" alt="Site Logo">
-	</div>
-		<section class="hamburger" id="hamburger">
-			<div class="bar"></div>
-			<div class="bar"></div>
-			<div class="bar"></div>
-			</section>
-			<div class="menu" id="menu">
-				<ul>
-					<li><a href="#">Home</a></li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle">Renewable energy
-								<span class="arrow arrow-down">&#9660;</span>
-								<span class="arrow arrow-up">&#9650;</span>
-							</a>
-							<ul class="dropdown-menu">
-								<li><a href="#">Solar</a></li>
-								<li><a href="#">Wind</a></li>
-								<li><a href="#">Hydro</a></li>
-							</ul>
-							</li>
-					<li><a href="#">Contact</a></li>
-					<li><a href="#">Blog</a></li>
-				</ul>
-			</div>
-		</section>
-</header>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <header class="header">
+      <div class="header__logo">
+        <img
+          class="header__logo--img"
+          src="./assets/images/logo.png"
+          alt="Site Logo"
+        />
+      </div>
+      <div class="hamburger" id="hamburger">
+        <div class="hamburger__bar"></div>
+        <div class="hamburger__bar"></div>
+        <div class="hamburger__bar"></div>
+      </div>
+      <div class="hamburger__menu" id="menu">
+        <ul class="menu__list">
+          <li class="menu__list--item">
+            <a class="menu__list--item--link" href="#">Home</a>
+          </li>
+          <li class="menu__list--item dropdown">
+            <a class="menu__list--item--link dropdown__toggle" href="#">
+              Renewable energy
+              <span class="dropdown__toggle--arrow dropdown__toggle--arrow-down"
+                >&#9660;</span
+              >
+              <span class="dropdown__toggle--arrow dropdown__toggle--arrow-up"
+                >&#9650;</span
+              >
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Solar energy</a></li>
+              <li><a href="#">Wind energy</a></li>
+              <li><a href="#">Geothermal energy</a></li>
+              <li><a href="#">Hydropower</a></li>
+              <li><a href="#">Ocean energy</a></li>
+              <li><a href="#">Bioenergy</a></li>
+            </ul>
+          </li>
+          <li class="menu__list--item">
+            <a class="menu__list--item--link" href="#">Contact</a>
+          </li>
+          <li class="menu__list--item">
+            <a class="menu__list--item--link" href="#">Blog</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="header__links"></div>
+    </header>
+  </body>
 </html>
