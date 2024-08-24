@@ -166,6 +166,10 @@ p {
   font-family: 'Mukta', serif;
 }
 a {
-  font-size: 16px;
+  font-size: 17px;
   font-family: 'Mukta', serif;
+  @media screen and (min-width: variables.$breakpoint-sm) {
+    font-size: 16px;
+	font-weight: 500;
+  }
 }
