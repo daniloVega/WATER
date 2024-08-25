@@ -1,0 +1,74 @@
+@use '../../base/variables';
+.bg-green {
+  background-color: variables.$color-secondary;
+}
+.initiative {
+  padding: 0 20px;
+  &__section {
+    padding-bottom: 40px;
+    border-bottom: 2px solid variables.$color-primary;
+    @media (min-width: variables.$breakpoint-lg) {
+      max-width: 330px;
+    }
+  }
+  &__section--two {
+    @media (min-width: variables.$breakpoint-lg) {
+      max-width: 630px;
+    }
+  }
+  &__title {
+    &--primary {
+      color: variables.$color-primary;
+    }
+    &--secondary {
+      color: variables.$color-white;
+    }
+    &--third {
+      color: variables.$color-primary;
+    }
+  }
+  &__text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    &--img {
+      width: 37px;
+      height: 26px;
+    }
+    &--primary {
+      color: variables.$color-white;
+    }
+    &--secondary {
+      color: variables.$color-white;
+      display: flex;
+      justify-content: space-between;
+      font-size: 17px;
+      font-weight: 400;
+      img {
+        width: 37px;
+        height: 26px;
+      }
+    }
+  }
+  .text-primary {
+    color: variables.$color-primary;
+  }
+  @media (min-width: variables.$breakpoint-md) {
+    display: flex;
+    &__section {
+      padding-right: 30px;
+      border-right: 2px solid variables.$color-primary;
+      border-bottom: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+  }
+  @media (min-width: variables.$breakpoint-lg) {
+    background: url('../../../assets/images/trees\ 1.png') no-repeat right
+      center;
+    background-size: auto 100%;
+    padding-left: 230px;
+  }
+}
