@@ -1,0 +1,37 @@
+@use '../../base/variables';
+.home {
+  background-image: url('../../../assets/images/home.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: calc(100vh - 90px);
+  @media (min-width: variables.$breakpoint-md) {
+    height: calc(100vh - 111px);
+  }
+  @media (min-width: variables.$breakpoint-lg) {
+    height: calc(100vh - 120px);
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  &__title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &-primary {
+      text-align: center;
+      color: variables.$color-primary;
+      max-width: 335px;
+      @media (min-width: variables.$breakpoint-md) {
+        max-width: 495px;
+      }
+      @media (min-width: variables.$breakpoint-lg) {
+        max-width: 643px;
+      }
+    }
+    &-secondary {
+      color: variables.$color-secondary;
+    }
+  }
+}

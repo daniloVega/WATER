@@ -138,7 +138,7 @@ table {
 h1 {
   font-size: 32px;
   line-height: 40px;
-  font-family: 'RozhaOne', serif;
+  font-family: variables.$font-secondary;
   @media screen and (min-width: variables.$breakpoint-md) {
     font-size: 50px;
     line-height: 54px;
@@ -151,7 +151,7 @@ h1 {
 h2 {
   font-size: 32px;
   line-height: 44px;
-  font-family: 'RozhaOne', serif;
+  font-family: variables.$font-secondary;
   @media screen and (min-width: variables.$breakpoint-md) {
     font-size: 40px;
     line-height: 48px;
@@ -163,13 +163,13 @@ h2 {
 }
 p {
   font-size: 16px;
-  font-family: 'Mukta', serif;
+  font-family: variables.$font-primary;
 }
 a {
   font-size: 17px;
-  font-family: 'Mukta', serif;
+  font-family: variables.$font-primary;
   @media screen and (min-width: variables.$breakpoint-sm) {
     font-size: 16px;
-	font-weight: 500;
+    font-weight: 500;
   }
 }

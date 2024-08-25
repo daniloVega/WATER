@@ -1,0 +1,11 @@
+@use 'variables';
+.btn-primary {
+  padding: 0 40px;
+  height: 54px;
+  color: variables.$color-white;
+  background-color: variables.$color-secondary;
+  outline: none;
+  border: none;
+  border-radius: 30px;
+  font-family: variables.$font-primary;
+}
