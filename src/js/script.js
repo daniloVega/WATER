@@ -16,13 +16,12 @@ hamburger.addEventListener('click', (event) => {
   toggleMenu(menu, 'open');
 });
 
-  dropdownToggle.addEventListener('click', (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-    const dropdown = document.querySelector('.dropdown');
-    dropdown.classList.toggle('active');
-  });
-
+dropdownToggle.addEventListener('click', (event) => {
+  event.preventDefault();
+  event.stopPropagation();
+  const dropdown = document.querySelector('.dropdown');
+  dropdown.classList.toggle('active');
+});
 
 // Handle dropdown link click
 dropdownLinks.forEach((link) => {
@@ -52,3 +51,31 @@ document.addEventListener('click', (event) => {
 });
 
 menu.addEventListener('click', (event) => event.stopPropagation());
+
+// BENEFITS LOGIC
+
+const items = document.querySelectorAll('.benefits__item');
+items.forEach((item, index) => {
+  if (index === 0) {
+    item.classList.add('benefits__item--expanded');
+    item.classList.remove('benefits__item--collapsed');
+  } else {
+    item.classList.add('benefits__item--collapsed');
+    item.classList.remove('benefits__item--expanded');
+  }
+});
+items.forEach((item) => {
+  item
+    .querySelector('.benefits__header')
+    .addEventListener('click', function () {
+      const isExpanded = item.classList.contains('benefits__item--expanded');
+
+      items.forEach((el) => el.classList.remove('benefits__item--expanded'));
+      items.forEach((el) => el.classList.add('benefits__item--collapsed'));
+
+      if (!isExpanded) {
+        item.classList.add('benefits__item--expanded');
+        item.classList.remove('benefits__item--collapsed');
+      }
+    });
+});
