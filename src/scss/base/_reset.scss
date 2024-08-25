@@ -161,6 +161,20 @@ h2 {
     line-height: 46px;
   }
 }
+h3 {
+  font-size: 22px;
+  line-height: 37px;
+  font-weight: 700px;
+  font-family: variables.$font-secondary;
+  @media screen and (min-width: variables.$breakpoint-md) {
+    font-size: 24px;
+    line-height: 40px;
+  }
+  @media screen and (min-width: variables.$breakpoint-lg) {
+    font-size: 26px;
+    line-height: 43px;
+  }
+}
 p {
   font-size: 16px;
   font-family: variables.$font-primary;

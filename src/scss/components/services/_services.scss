@@ -1,0 +1,73 @@
+@use '../../base/variables';
+.services-section {
+  background-color: variables.$color-secondary;
+
+  &__box {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    @media (min-width: variables.$breakpoint-lg) {
+      gap: 40px;
+    }
+    @media (min-width: variables.$breakpoint-xl) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  &__text {
+    max-width: 335px;
+  }
+  &__title {
+    color: variables.$color-white;
+  }
+  &__description {
+    color: variables.$color-white;
+  }
+  &__cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    @media (min-width: variables.$breakpoint-md) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+    }
+    @media (min-width: variables.$breakpoint-xl) {
+      grid-template-columns: repeat(2, minmax(425px, 1fr));
+      gap: 20px;
+      margin-top: -90px;
+    }
+  }
+  &__card {
+    display: flex;
+    flex-direction: column;
+    height: 587px;
+    img {
+      width: 100%;
+      height: 461px;
+    }
+    &-content {
+      height: 126px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      background-color: variables.$color-light;
+    }
+    &-title {
+      color: variables.$color-secondary;
+    }
+    &-description {
+      color: variables.$color-primary;
+    }
+    @media (min-width: variables.$breakpoint-md) {
+      min-width: 349px;
+      height: 608px;
+    }
+    @media (min-width: variables.$breakpoint-xl) {
+      min-width: 425px;
+    }
+  }
+  @media (min-width: variables.$breakpoint-lg) {
+    justify-content: flex-start;
+  }
+}
