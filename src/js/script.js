@@ -84,7 +84,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		item.addEventListener('click', function() {
 			const targetId = this.getAttribute('id'); 
 			const targetContent = document.querySelector(`.benefits__content-container .benefits__content-secondary#${targetId}`);
-
 			if (targetContent) {
 				document.querySelectorAll('.benefits__content-container .benefits__content-secondary').forEach(content => {
 					content.classList.remove('benefits__content-secondary--active');
