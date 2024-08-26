@@ -1,98 +1,190 @@
 @use '../../base/variables';
+
+.benefits-section {
+    background-color: variables.$color-light;
+
+    &__title {
+        display: none;
+
+        @media(min-width: variables.$breakpoint-md) {
+			display: block;
+            text-align: center;
+            color: variables.$color-secondary;
+        }
+
+    }
+}
+
 .benefits {
-  background-color: variables.$color-light;
-  &__title {
-    text-align: center;
-    color: variables.$color-secondary;
-  }
+    &__title {
+        text-align: center;
+        color: variables.$color-secondary;
 
-  &__item {
-    border-bottom: 2px solid variables.$color-primary;
-    transition: max-height 0.3s ease, padding 0.3s ease;
-
-    &--collapsed .benefits__content {
-      max-height: 0;
-      overflow: hidden;
-      padding: 0;
+        @media (min-width: variables.$breakpoint-md) {
+            display: none;
+        }
     }
 
-    &--collapsed .benefits__icon {
-      transform: rotate(0deg);
-    }
+    // &__box{
 
-    &--expanded .benefits__content {
-      max-height: 200px; /* Adjust based on content */
-      margin-bottom: 20px;
-    }
-
-    &--expanded .benefits__icon {
-      transform: rotate(180deg);
-    }
-    @media (min-width: variables.$breakpoint-md) {
-      display: flex;
-      justify-content: space-between;
-      border: none;
-    }
-    // @media (min-width: variables.$breakpoint-lg) {
     // }
-  }
+    &__item {
+        border-bottom: 2px solid variables.$color-primary;
+        transition: max-height 0.3s ease, padding 0.3s ease;
 
-  &__header {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    padding: 0.5rem;
-    cursor: pointer;
-  }
+        &--collapsed .benefits__content {
+            max-height: 0;
+            overflow: hidden;
+            padding: 0;
+        }
 
-  &__subtitle {
-    margin: 0;
-    font-size: 1.2rem;
-    color: variables.$color-secondary;
-    display: flex;
-    align-items: center;
-    &--num {
-      color: variables.$color-primary;
-      display: block;
-      width: 56px;
-      font-size: 32px;
-    }
-  }
-  &__arrow {
-    display: flex;
-    justify-content: flex-end;
-  }
-  &__icon {
-    display: flex;
-    justify-content: flex-end;
-    font-size: 26px;
-    transition: transform 0.3s ease;
-    color: variables.$color-primary;
-    @media (min-width: variables.$breakpoint-md) {
-      display: none;
-    }
-  }
-  &__icon-tablet {
-    display: none;
-    @media (min-width: variables.$breakpoint-md) {
-      display: block;
-      font-size: 26px;
-      transition: transform 0.3s ease;
-      color: variables.$color-primary;
-    }
-  }
+        &--collapsed .benefits__icon {
+            transform: rotate(0deg);
+        }
 
-  &__content {
-    line-height: 1.4;
-    transition: max-height 0.3s ease, padding 0.3s ease;
-    max-width: 300px;
-    p {
-      color: variables.$color-secondary;
+        &--expanded .benefits__content {
+            max-height: 200px;
+
+            /* Adjust based on content */
+            margin-bottom: 20px;
+        }
+
+        &--expanded .benefits__icon {
+            transform: rotate(180deg);
+        }
+
+        @media (min-width: variables.$breakpoint-md) {
+            display: flex;
+            justify-content: space-between;
+            border: none;
+        }
+
+        // @media (min-width: variables.$breakpoint-lg) {
+        // }
     }
+
+    &__header {
+        display: grid;
+        padding: 10px 0;
+        grid-template-columns: repeat(2, 1fr);
+        cursor: pointer;
+		@media(min-width: variables.$breakpoint-md){
+			grid-template-columns: repeat(2, minmax(200px, 250px));
+		}
+    }
+
+    &__subtitle {
+        margin: 0;
+        font-size: 24px;
+        color: variables.$color-secondary;
+        display: flex;
+        align-items: center;
+
+        &--num {
+            color: variables.$color-primary;
+            display: block;
+            width: 56px;
+            font-size: 32px;
+        }
+    }
+
+    &__arrow {
+        display: flex;
+        justify-content: flex-end;
+
+        @media (min-width: variables.$breakpoint-md) {
+            justify-content: center;
+        }
+    }
+
+    &__icon {
+        display: flex;
+        justify-content: flex-end;
+        font-size: 26px;
+        transition: transform 0.3s ease;
+        color: variables.$color-primary;
+
+        @media (min-width: variables.$breakpoint-md) {
+            display: none;
+        }
+    }
+
+    &__icon-tablet {
+        display: none;
+
+        @media (min-width: variables.$breakpoint-md) {
+            display: block;
+            font-size: 26px;
+            transition: transform 0.3s ease;
+            color: variables.$color-primary;
+        }
+    }
+
+    &__content {
+        line-height: 1.4;
+        transition: max-height 0.3s ease, padding 0.3s ease;
+        max-width: 300px;
+
+        p {
+            color: variables.$color-secondary;
+        }
+
+        @media (min-width: variables.$breakpoint-md) {
+            display: none;
+        }
+
+        @media (min-width: variables.$breakpoint-md) {
+            max-width: 510px;
+            display: none;
+        }
+    }
+
+    &__shared-area {
+        display: none; // Hide shared area by default
+
+        @media (min-width: variables.$breakpoint-md) {
+            display: block;
+        }
+    }
+
     @media (min-width: variables.$breakpoint-md) {
-      max-width: 364px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
     }
+
+    &__content-secondary {
+        display: none;
+
+        @media (min-width: variables.$breakpoint-md) {
+            display: none;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+    }
+
+    &__content-secondary--active {
+        display: none;
+
+        @media (min-width: variables.$breakpoint-md) {
+            display: block;
+            max-height: 200px;
+        }
+    }
+
+    &__content-container {
+        display: none;
+
+        @media (min-width: variables.$breakpoint-md) {
+            display: block;
+            max-height: 200px;
+        }
+    }
+
     @media (min-width: variables.$breakpoint-md) {
-      max-width: 510px;
+        .benefits__headers {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 64px;
+        }
     }
-  }
 }
