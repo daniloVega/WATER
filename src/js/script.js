@@ -65,34 +65,106 @@ items.forEach((item, index) => {
 	}
 });
 items.forEach((item) => {
-	console.log('item', item)
-	item
-		.querySelector('.benefits__header')
-		.addEventListener('click', function () {
-			const isExpanded = item.classList.contains('benefits__item--expanded');
-				console.log('clicked', isExpanded);
-			items.forEach((el) => el.classList.remove('benefits__item--expanded'));
-			items.forEach((el) => el.classList.add('benefits__item--collapsed'));
+	console.log('item', item);
+	item.querySelector('.benefits__header').addEventListener(
+		'click',
+		function () {
+			const isExpanded = item.classList.contains(
+				'benefits__item--expanded'
+			);
+			console.log('clicked', isExpanded);
+			items.forEach((el) =>
+				el.classList.remove('benefits__item--expanded')
+			);
+			items.forEach((el) =>
+				el.classList.add('benefits__item--collapsed')
+			);
 			if (!isExpanded) {
 				item.classList.add('benefits__item--expanded');
 				item.classList.remove('benefits__item--collapsed');
 			}
-		});
+		}
+	);
 });
 document.addEventListener('DOMContentLoaded', () => {
-	document.querySelectorAll('.benefits__item').forEach(item => {
-		item.addEventListener('click', function() {
-			const targetId = this.getAttribute('id'); 
-			const targetContent = document.querySelector(`.benefits__content-container .benefits__content-secondary#${targetId}`);
+	document.querySelectorAll('.benefits__item').forEach((item) => {
+		item.addEventListener('click', function () {
+			const targetId = this.getAttribute('id');
+			const targetContent = document.querySelector(
+				`.benefits__content-container .benefits__content-secondary#${targetId}`
+			);
 			if (targetContent) {
-				document.querySelectorAll('.benefits__content-container .benefits__content-secondary').forEach(content => {
-					content.classList.remove('benefits__content-secondary--active');
-				});
+				document
+					.querySelectorAll(
+						'.benefits__content-container .benefits__content-secondary'
+					)
+					.forEach((content) => {
+						content.classList.remove(
+							'benefits__content-secondary--active'
+						);
+					});
 
-				targetContent.classList.add('benefits__content-secondary--active');
+				targetContent.classList.add(
+					'benefits__content-secondary--active'
+				);
 			} else {
 				console.error(`No content found with ID: ${targetId}`);
 			}
 		});
 	});
 });
+
+// CAROUSEL LOGIC
+const reviews = [
+	{
+		name: 'John Doe',
+		review: 'This product is amazing! I highly recommend it.',
+		image: './assets/images/user-1.png', // Path to John's image
+	},
+	{
+		name: 'Jane Smith',
+		review: 'Not what I expected, but still a good purchase.',
+		image: './assets/images/user-2.png',
+	},
+	{
+		name: 'Mike Johnson',
+		review: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec semper molestie mi tempor aliquam. Etiam quis dolor scelerisque, laoreet justo vel, cursus purus. Phasellus commodo libero odio, sit amet gravida elit placerat eget.',
+		image: './assets/images/user-3.png',
+	},
+];
+let currentIndex = 0;
+function updateCarousel() {
+	document.querySelector('.carousel__description-text').textContent =
+		reviews[currentIndex].review;
+	document.querySelector(
+		'.carousel__people-name'
+	).textContent = `${reviews[currentIndex].name}`;
+	document.querySelector('.carousel__people-img').src =
+		reviews[currentIndex].image;
+
+	document.getElementById('prev').style.opacity =
+		currentIndex === 0 ? 0.5 : 1;
+	document.getElementById('next').style.opacity =
+		currentIndex === reviews.length - 1 ? 0.5 : 1;
+
+	document.getElementById('prev').style.pointerEvents =
+		currentIndex === 0 ? 'none' : 'auto';
+	document.getElementById('next').style.pointerEvents =
+		currentIndex === reviews.length - 1 ? 'none' : 'auto';
+}
+document.getElementById('prev').addEventListener('click', () => {
+	if (currentIndex > 0) {
+		currentIndex -= 1;
+		updateCarousel();
+	}
+});
+
+document.getElementById('next').addEventListener('click', () => {
+	if (currentIndex < reviews.length - 1) {
+		currentIndex += 1;
+		updateCarousel();
+	}
+});
+
+// Initialize the carousel with the first review
+updateCarousel();
