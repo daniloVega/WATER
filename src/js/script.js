@@ -54,97 +54,81 @@ menu.addEventListener('click', (event) => event.stopPropagation());
 
 // BENEFITS LOGIC
 
-const items = document.querySelectorAll('.benefits__item');
-items.forEach((item, index) => {
-	if (index === 0) {
-		item.classList.add('benefits__item--expanded');
-		item.classList.remove('benefits__item--collapsed');
-	} else {
-		item.classList.add('benefits__item--collapsed');
-		item.classList.remove('benefits__item--expanded');
-	}
-});
-items.forEach((item) => {
-	console.log('item', item);
-	item.querySelector('.benefits__header').addEventListener(
-		'click',
-		function () {
-			const isExpanded = item.classList.contains(
-				'benefits__item--expanded'
-			);
-			console.log('clicked', isExpanded);
-			items.forEach((el) =>
-				el.classList.remove('benefits__item--expanded')
-			);
-			items.forEach((el) =>
-				el.classList.add('benefits__item--collapsed')
-			);
-			if (!isExpanded) {
-				item.classList.add('benefits__item--expanded');
-				item.classList.remove('benefits__item--collapsed');
-			}
-		}
-	);
-});
 document.addEventListener('DOMContentLoaded', () => {
-	const benefitsItems = document.querySelectorAll('.benefits__item');
+	const items = document.querySelectorAll('.benefits__item');
 	const benefitsContents = document.querySelectorAll(
 		'.benefits__content-container .benefits__content-secondary'
 	);
 
-	// Function to deactivate all arrows
 	const deactivateArrows = () => {
-		benefitsItems.forEach((item) => {
+		items.forEach((item) => {
 			const arrow = item.querySelector('.benefits__icon-tablet');
-			if (arrow) {
-				arrow.classList.remove('benefits__icon-tablet-active');
+			arrow?.classList.remove('benefits__icon-tablet-active');
+		});
+	};
+
+	const activateArrow = (item) => {
+		const arrow = item.querySelector('.benefits__icon-tablet');
+		arrow?.classList.add('benefits__icon-tablet-active');
+	};
+
+	const updateItemState = (itemToExpand) => {
+		items.forEach((item) => {
+			if (item === itemToExpand) {
+				item.classList.add('benefits__item--expanded');
+				item.classList.remove('benefits__item--collapsed');
+			} else {
+				item.classList.add('benefits__item--collapsed');
+				item.classList.remove('benefits__item--expanded');
 			}
 		});
 	};
 
-	// Function to activate arrow for a specific item
-	const activateArrow = (item) => {
-		const arrow = item.querySelector('.benefits__icon-tablet');
-		if (arrow) {
-			arrow.classList.add('benefits__icon-tablet-active');
-		}
+	const handleItemClick = (item) => {
+		return () => {
+			const isExpanded = item.classList.contains(
+				'benefits__item--expanded'
+			);
+			updateItemState(isExpanded ? null : item);
+		};
 	};
 
-	// Initial setup: show the arrow of the first item and its associated content
-	if (benefitsItems.length > 0) {
-		activateArrow(benefitsItems[0]);
-	}
-
-	benefitsItems.forEach((item) => {
-		// Mouseover event for non-touch devices
-		item.addEventListener('mouseover', function () {
-			// Deactivate all arrows
+	const handleMouseOver = (item) => {
+		return () => {
 			deactivateArrows();
+			activateArrow(item);
 
-			// Activate the arrow for the hovered item
-			activateArrow(this);
-
-			const targetId = this.getAttribute('id');
+			const targetId = item.getAttribute('id');
 			const targetContent = document.querySelector(
 				`.benefits__content-container .benefits__content-secondary#${targetId}`
 			);
 
-			if (targetContent) {
-				benefitsContents.forEach((content) => {
-					content.classList.remove(
-						'benefits__content-secondary--active'
-					);
-				});
-				targetContent.classList.add(
-					'benefits__content-secondary--active'
+			benefitsContents.forEach((content) => {
+				content.classList.toggle(
+					'benefits__content-secondary--active',
+					content === targetContent
 				);
-			} else {
+			});
+
+			if (!targetContent) {
 				console.error(`No content found with ID: ${targetId}`);
 			}
-		});
+		};
+	};
+
+	if (items.length > 0) {
+		updateItemState(items[0]);
+		activateArrow(items[0]);
+	}
+
+	items.forEach((item) => {
+		item.querySelector('.benefits__header').addEventListener(
+			'click',
+			handleItemClick(item)
+		);
+		item.addEventListener('mouseover', handleMouseOver(item));
 	});
 });
-
 // CAROUSEL LOGIC
 const reviews = [
 	{
@@ -164,37 +148,42 @@ const reviews = [
 	},
 ];
 let currentIndex = 0;
-function updateCarousel() {
+
+const updateCarousel = () => {
+	const review = reviews[currentIndex];
+
 	document.querySelector('.carousel__description-text').textContent =
-		reviews[currentIndex].review;
-	document.querySelector(
-		'.carousel__people-name'
-	).textContent = `${reviews[currentIndex].name}`;
-	document.querySelector('.carousel__people-img').src =
-		reviews[currentIndex].image;
+		review.review;
+	document.querySelector('.carousel__people-name').textContent = review.name;
+	document.querySelector('.carousel__people-img').src = review.image;
 
-	document.getElementById('prev').style.opacity =
-		currentIndex === 0 ? 0.5 : 1;
-	document.getElementById('next').style.opacity =
-		currentIndex === reviews.length - 1 ? 0.5 : 1;
+	const isAtStart = currentIndex === 0;
+	const isAtEnd = currentIndex === reviews.length - 1;
 
-	document.getElementById('prev').style.pointerEvents =
-		currentIndex === 0 ? 'none' : 'auto';
-	document.getElementById('next').style.pointerEvents =
-		currentIndex === reviews.length - 1 ? 'none' : 'auto';
-}
-document.getElementById('prev').addEventListener('click', () => {
-	if (currentIndex > 0) {
+	setButtonState('prev', !isAtStart);
+	setButtonState('next', !isAtEnd);
+};
+
+const setButtonState = (buttonId, isEnabled) => {
+	const button = document.getElementById(buttonId);
+	button.style.opacity = isEnabled ? 1 : 0.5;
+	button.style.pointerEvents = isEnabled ? 'auto' : 'none';
+};
+
+const handleNavigation = (direction) => {
+	if (direction === 'prev' && currentIndex > 0) {
 		currentIndex -= 1;
-		updateCarousel();
-	}
-});
-
-document.getElementById('next').addEventListener('click', () => {
-	if (currentIndex < reviews.length - 1) {
+	} else if (direction === 'next' && currentIndex < reviews.length - 1) {
 		currentIndex += 1;
-		updateCarousel();
 	}
-});
+	updateCarousel();
+};
+
+document
+	.getElementById('prev')
+	.addEventListener('click', () => handleNavigation('prev'));
+document
+	.getElementById('next')
+	.addEventListener('click', () => handleNavigation('next'));
 
 updateCarousel();
