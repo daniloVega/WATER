@@ -1,0 +1,32 @@
+@use '../../base/variables.scss';
+
+.join-init {
+	background-image: url('../../../assets/images/house.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	&__box {
+		padding-top: 50px;
+		padding-bottom: 120px;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		gap: 20px;
+		p {
+			max-width: 330px;
+			color: variables.$color-secondary;
+		}
+		button {
+			max-width: 140px;
+		}
+	}
+	&__title {
+		color: variables.$color-primary;
+		span {
+			color: variables.$color-secondary;
+		}
+	}
+	@media (min-width: variables.$breakpoint-lg) {
+		min-height: 500px;
+	}
+}
