@@ -117,20 +117,20 @@ document.addEventListener('DOMContentLoaded', () => {
 // CAROUSEL LOGIC
 const reviews = [
 	{
+		name: 'Mike Johnson',
+		review: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec semper molestie mi tempor aliquam. Etiam quis dolor scelerisque, laoreet justo vel, cursus purus. Phasellus commodo libero odio, sit amet gravida elit placerat eget.',
+		image: './assets/images/user-3.png',
+	},
+	{
 		name: 'John Doe',
 		review: 'This product is amazing! I highly recommend it.',
-		image: './assets/images/user-1.png', // Path to John's image
+		image: './assets/images/user-1.png',
 	},
 	{
 		name: 'Jane Smith',
 		review: 'Not what I expected, but still a good purchase.',
 		image: './assets/images/user-2.png',
-	},
-	{
-		name: 'Mike Johnson',
-		review: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec semper molestie mi tempor aliquam. Etiam quis dolor scelerisque, laoreet justo vel, cursus purus. Phasellus commodo libero odio, sit amet gravida elit placerat eget.',
-		image: './assets/images/user-3.png',
-	},
+	}
 ];
 let currentIndex = 0;
 function updateCarousel() {
@@ -166,5 +166,4 @@ document.getElementById('next').addEventListener('click', () => {
 	}
 });
 
-// Initialize the carousel with the first review
 updateCarousel();
