@@ -117,11 +117,14 @@
 		display: none;
 
 		@media (min-width: variables.$breakpoint-md) {
-			display: flex;
-			align-items: center;
-			font-size: 26px;
-			transition: transform 0.3s ease;
-			color: variables.$color-primary;
+			display: none;
+			&-active {
+				display: flex;
+				align-items: center;
+				font-size: 26px;
+				transition: transform 0.3s ease;
+				color: variables.$color-primary;
+			}
 		}
 	}
 
@@ -190,7 +193,7 @@
 
 		@media (min-width: variables.$breakpoint-md) {
 			display: block;
-			max-height: 200px;
+			max-height: 150px;
 		}
 	}
 

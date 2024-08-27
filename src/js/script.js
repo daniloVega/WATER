@@ -87,23 +87,54 @@ items.forEach((item) => {
 	);
 });
 document.addEventListener('DOMContentLoaded', () => {
-	document.querySelectorAll('.benefits__item').forEach((item) => {
-		item.addEventListener('click', function () {
+	const benefitsItems = document.querySelectorAll('.benefits__item');
+	const benefitsContents = document.querySelectorAll(
+		'.benefits__content-container .benefits__content-secondary'
+	);
+
+	// Function to deactivate all arrows
+	const deactivateArrows = () => {
+		benefitsItems.forEach((item) => {
+			const arrow = item.querySelector('.benefits__icon-tablet');
+			if (arrow) {
+				arrow.classList.remove('benefits__icon-tablet-active');
+			}
+		});
+	};
+
+	// Function to activate arrow for a specific item
+	const activateArrow = (item) => {
+		const arrow = item.querySelector('.benefits__icon-tablet');
+		if (arrow) {
+			arrow.classList.add('benefits__icon-tablet-active');
+		}
+	};
+
+	// Initial setup: show the arrow of the first item and its associated content
+	if (benefitsItems.length > 0) {
+		activateArrow(benefitsItems[0]);
+	}
+
+	benefitsItems.forEach((item) => {
+		// Mouseover event for non-touch devices
+		item.addEventListener('mouseover', function () {
+			// Deactivate all arrows
+			deactivateArrows();
+
+			// Activate the arrow for the hovered item
+			activateArrow(this);
+
 			const targetId = this.getAttribute('id');
 			const targetContent = document.querySelector(
 				`.benefits__content-container .benefits__content-secondary#${targetId}`
 			);
-			if (targetContent) {
-				document
-					.querySelectorAll(
-						'.benefits__content-container .benefits__content-secondary'
-					)
-					.forEach((content) => {
-						content.classList.remove(
-							'benefits__content-secondary--active'
-						);
-					});
 
+			if (targetContent) {
+				benefitsContents.forEach((content) => {
+					content.classList.remove(
+						'benefits__content-secondary--active'
+					);
+				});
 				targetContent.classList.add(
 					'benefits__content-secondary--active'
 				);
@@ -130,7 +161,7 @@ const reviews = [
 		name: 'Jane Smith',
 		review: 'Not what I expected, but still a good purchase.',
 		image: './assets/images/user-2.png',
-	}
+	},
 ];
 let currentIndex = 0;
 function updateCarousel() {
