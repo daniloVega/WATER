@@ -1,0 +1,102 @@
+@use '../../base/variables';
+
+.footer {
+	background-color: variables.$color-secondary;
+	background-image: url('../../../assets/images/group-3.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	&__box {
+		padding-top: 40px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		@media (min-width: variables.$breakpoint-md) {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			align-items: baseline;
+			gap: 100px;
+			padding-bottom: 30px;
+		}
+	}
+	&__logo {
+		width: 220px;
+		height: 40px;
+	}
+	&__icons {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		padding-top: 40px;
+	}
+	.footer__icons-wrap {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 10px;
+		padding-bottom: 30px;
+		a {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border: 1px solid variables.$color-primary;
+			border-radius: 50%;
+			width: 40px;
+			height: 40px;
+			img {
+				color: variables.$color-primary;
+			}
+		}
+	}
+	&__text {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+
+		p {
+			color: variables.$color-white;
+			line-height: 26px;
+		}
+		&-primary {
+			font-size: 22px;
+			font-weight: 700;
+		}
+	}
+	&__links {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		padding-top: 40px;
+		padding-bottom: 30px;
+		gap: 5px;
+		a {
+			color: variables.$color-primary;
+			text-decoration: none;
+			line-height: 26px;
+		}
+		@media (min-width: variables.$breakpoint-md) {
+			align-items: flex-start;
+			margin-left: auto;
+		}
+	}
+	&__copywright {
+		padding: 10px;
+		border-top: 1px solid variables.$color-primary;
+		display: flex;
+		justify-content: center;
+		p {
+			color: variables.$color-primary;
+		}
+		@media (min-width: variables.$breakpoint-md) {
+			justify-content: flex-start;
+		}
+	}
+	@media (min-width: variables.$breakpoint-md) {
+		background-image: url('../../../assets/images/group-1.png');
+		background-position: top left;
+		background-repeat: no-repeat;
+		background-size: auto;
+	}
+}
