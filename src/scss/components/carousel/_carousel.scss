@@ -1,0 +1,80 @@
+@use '../../base/variables.scss';
+
+.carousel {
+	padding-bottom: 50px;
+	display: flex;
+	flex-direction: column;
+	background-color: variables.$color-primary;
+
+	&__description {
+		&-box {
+			display: flex;
+		}
+
+		&-img {
+			align-self: flex-start;
+		}
+
+		&-img-second {
+			align-self: flex-end;
+		}
+
+		&-text {
+			padding: 0 15px;
+			color: variables.$color-white;
+		}
+	}
+
+	&__people {
+		&-box {
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+			gap: 20px;
+			padding-bottom: 30px;
+			border-bottom: 2px solid variables.$color-white;
+		}
+
+		&-img {
+			width: 60px;
+			height: 60px;
+			border-radius: 50%;
+		}
+
+		&-name {
+			color: variables.$color-white;
+			font-family: variables.$font-secondary;
+			font-size: 17px;
+		}
+
+		&-navigation {
+			padding-top: 20px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: 20px;
+		}
+	}
+
+	@media (min-width: variables.$breakpoint-md) {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		padding-top: 120px;
+		padding-bottom: 120px;
+		gap: 30px;
+		background-image: url('../../../assets/images/group-1.png'),
+			url('../../../assets/images/group-2.png');
+		background-position: top left, bottom right;
+		background-repeat: no-repeat, no-repeat;
+		background-size: auto, auto;
+
+		&__people {
+			&-box {
+				border-bottom: none;
+			}
+			&-navigation {
+				justify-content: flex-start;
+			}
+		}
+	}
+}

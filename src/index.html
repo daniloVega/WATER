@@ -1,262 +1,450 @@
+import '../scss/style.scss'; const hamburger =
+document.getElementById('hamburger'); const menu =
+document.getElementById('menu'); const dropdownToggle =
+document.querySelector('.dropdown__toggle'); const dropdownLinks =
+document.querySelectorAll('.dropdown-menu a'); const menuLinks =
+document.querySelectorAll( '.menu__list--item a:not(.dropdown__toggle)' ); const
+dropdown = document.querySelector('.dropdown'); const toggleMenu = (element,
+className) => element.classList.toggle(className);
+hamburger.addEventListener('click', (event) => { event.stopPropagation();
+toggleMenu(hamburger, 'open'); toggleMenu(menu, 'open'); });
+dropdownToggle.addEventListener('click', (event) => { event.preventDefault();
+event.stopPropagation(); const dropdown = document.querySelector('.dropdown');
+dropdown.classList.toggle('active'); }); // Handle dropdown link click
+dropdownLinks.forEach((link) => { link.addEventListener('click', (event) => {
+event.stopPropagation(); const parentDropdown = link.closest('.dropdown'); if
+(parentDropdown) parentDropdown.classList.remove('active');
+hamburger.classList.remove('open'); menu.classList.remove('open'); }); });
+menuLinks.forEach((link) => { link.addEventListener('click', (event) => {
+event.stopPropagation(); hamburger.classList.remove('open');
+menu.classList.remove('open'); }); }); document.addEventListener('click',
+(event) => { if ( !dropdown.contains(event.target) &&
+!dropdownToggle.contains(event.target) ) { dropdown.classList.remove('active');
+} }); menu.addEventListener('click', (event) => event.stopPropagation()); //
+BENEFITS LOGIC const items = document.querySelectorAll('.benefits__item');
+items.forEach((item, index) => { if (index === 0) {
+item.classList.add('benefits__item--expanded');
+item.classList.remove('benefits__item--collapsed'); } else {
+item.classList.add('benefits__item--collapsed');
+item.classList.remove('benefits__item--expanded'); } }); items.forEach((item) =>
+{ console.log('item', item) item .querySelector('.benefits__header')
+.addEventListener('click', function () { const isExpanded =
+item.classList.contains('benefits__item--expanded'); console.log('clicked',
+isExpanded); items.forEach((el) =>
+el.classList.remove('benefits__item--expanded')); items.forEach((el) =>
+el.classList.add('benefits__item--collapsed')); if (!isExpanded) {
+item.classList.add('benefits__item--expanded');
+item.classList.remove('benefits__item--collapsed'); } }); });
+document.addEventListener('DOMContentLoaded', () => {
+document.querySelectorAll('.benefits__item').forEach(item => {
+item.addEventListener('click', function() { const targetId =
+this.getAttribute('id'); const targetContent =
+document.querySelector(`.benefits__content-container
+.benefits__content-secondary#${targetId}`); if (targetContent) {
+document.querySelectorAll('.benefits__content-container
+.benefits__content-secondary').forEach(content => {
+content.classList.remove('benefits__content-secondary--active'); });
+targetContent.classList.add('benefits__content-secondary--active'); } else {
+console.error(`No content found with ID: ${targetId}`); } }); }); }); //
+CAROUSEL LOGIC const reviews = [ { name: "John Doe", review: "This product is
+amazing! I highly recommend it.", image: "images/john.jpg" // Path to John's
+image }, { name: "Jane Smith", review: "Not what I expected, but still a good
+purchase.", image: "images/jane.jpg" // Path to Jane's image }, { name: "Mike
+Johnson", review: "Good quality for the price. Would buy again.", image:
+"images/mike.jpg" // Path to Mike
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
 
-<head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Document</title>
-</head>
-
-<body>
-	<header class="header">
-		<div class="header__logo">
-			<img class="header__logo--img" src="./assets/images/logo.png" alt="Site Logo" />
-		</div>
-		<div class="hamburger" id="hamburger">
-			<div class="hamburger__bar"></div>
-			<div class="hamburger__bar"></div>
-			<div class="hamburger__bar"></div>
-		</div>
-		<div class="hamburger__menu" id="menu">
-			<ul class="menu__list">
-				<li class="menu__list--item">
-					<a class="menu__list--item--link" href="#">Home</a>
-				</li>
-				<li class="menu__list--item dropdown">
-					<a class="menu__list--item--link dropdown__toggle" href="#">
-						Renewable energy
-						<span class="dropdown__toggle--arrow dropdown__toggle--arrow-down"><img
-							src="./assets/images/icons/expand_more.svg" alt="expand" /></span>
-						<span class="dropdown__toggle--arrow dropdown__toggle--arrow-up"><img
-							src="./assets/images/icons/expand_more.svg" alt="expand" /></span>
-					</a>
-					<ul class="dropdown-menu">
-						<li><a href="#">Solar energy</a></li>
-						<li><a href="#">Wind energy</a></li>
-						<li><a href="#">Geothermal energy</a></li>
-						<li><a href="#">Hydropower</a></li>
-						<li><a href="#">Ocean energy</a></li>
-						<li><a href="#">Bioenergy</a></li>
-					</ul>
-				</li>
-				<li class="menu__list--item">
-					<a class="menu__list--item--link" href="#">Contact</a>
-				</li>
-				<li class="menu__list--item">
-					<a class="menu__list--item--link" href="#">Blog</a>
-				</li>
-			</ul>
-		</div>
-
-		<div class="header__links"></div>
-	</header>
-	<main>
-		<!-- HOME PAGE -->
-		<section class="home">
-			<div class="container home__title pt-4 md:pt-7 lg:pt-6">
-				<h1 class="home__title-primary">
-					Clean <span class="home__title-secondary">energy</span> & clean
-					<span class="home__title-secondary">water</span> to your home
-					<span class="home__title-secondary">.</span>
-				</h1>
-				<button class="btn-primary mt-2">join the initiative</button>
+	<body>
+		<header class="header">
+			<div class="header__logo">
+				<img
+					class="header__logo--img"
+					src="./assets/images/logo.png"
+					alt="Site Logo" />
 			</div>
-		</section>
-		<!-- INITIATIVE PAGE -->
-		<section>
-			<div class="bg-green pt-4 pb-4">
-				<article class="initiative">
-					<div class="initiative__section">
-						<h2 class="initiative__title">
-							<span class="initiative__title--primary">About the</span>
-							<span class="initiative__title--secondary">initiative</span>
-							<span class="initiative__title--third">.</span>
-						</h2>
-						<div>
-							<div class="initiative__text initiative__text">
-								<img class="initiative__text--img" src="./assets/images/icons/quote1.svg" alt="quote" />
-								<p class="initiative__text--primary">
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-									Donec semper molestie mi tempor aliquam. Etiam quis dolor
-									scelerisque, laoreet justo vel, cursus purus. Phasellus
-									commodo libero odio, sit amet gravida elit placerat eget.
+			<div class="hamburger" id="hamburger">
+				<div class="hamburger__bar"></div>
+				<div class="hamburger__bar"></div>
+				<div class="hamburger__bar"></div>
+			</div>
+			<div class="hamburger__menu" id="menu">
+				<ul class="menu__list">
+					<li class="menu__list--item">
+						<a class="menu__list--item--link" href="#">Home</a>
+					</li>
+					<li class="menu__list--item dropdown">
+						<a
+							class="menu__list--item--link dropdown__toggle"
+							href="#">
+							Renewable energy
+							<span
+								class="dropdown__toggle--arrow dropdown__toggle--arrow-down"
+								><img
+									src="./assets/images/icons/expand_more.svg"
+									alt="expand"
+							/></span>
+							<span
+								class="dropdown__toggle--arrow dropdown__toggle--arrow-up"
+								><img
+									src="./assets/images/icons/expand_more.svg"
+									alt="expand"
+							/></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Solar energy</a></li>
+							<li><a href="#">Wind energy</a></li>
+							<li><a href="#">Geothermal energy</a></li>
+							<li><a href="#">Hydropower</a></li>
+							<li><a href="#">Ocean energy</a></li>
+							<li><a href="#">Bioenergy</a></li>
+						</ul>
+					</li>
+					<li class="menu__list--item">
+						<a class="menu__list--item--link" href="#">Contact</a>
+					</li>
+					<li class="menu__list--item">
+						<a class="menu__list--item--link" href="#">Blog</a>
+					</li>
+				</ul>
+			</div>
+
+			<div class="header__links"></div>
+		</header>
+		<main>
+			<!-- HOME PAGE -->
+			<section class="home">
+				<div class="container home__title pt-4 md:pt-7 lg:pt-6">
+					<h1 class="home__title-primary">
+						Clean
+						<span class="home__title-secondary">energy</span> &
+						clean
+						<span class="home__title-secondary">water</span> to your
+						home
+						<span class="home__title-secondary">.</span>
+					</h1>
+					<button class="btn-primary mt-2">
+						join the initiative
+					</button>
+				</div>
+			</section>
+			<!-- INITIATIVE PAGE -->
+			<section>
+				<div class="bg-green pt-4 pb-4">
+					<article class="initiative">
+						<div class="initiative__section">
+							<h2 class="initiative__title">
+								<span class="initiative__title--primary"
+									>About the</span
+								>
+								<span class="initiative__title--secondary"
+									>initiative</span
+								>
+								<span class="initiative__title--third">.</span>
+							</h2>
+							<div>
+								<div class="initiative__text initiative__text">
+									<img
+										class="initiative__text--img"
+										src="./assets/images/icons/quote1.svg"
+										alt="quote" />
+									<p class="initiative__text--primary">
+										Lorem ipsum dolor sit amet, consectetur
+										adipiscing elit. Donec semper molestie
+										mi tempor aliquam. Etiam quis dolor
+										scelerisque, laoreet justo vel, cursus
+										purus. Phasellus commodo libero odio,
+										sit amet gravida elit placerat eget.
+									</p>
+								</div>
+								<p class="initiative__text--secondary pt-1">
+									John
+									<span
+										><img
+											src="./assets/images/icons/quote2.svg"
+											alt="quote"
+									/></span>
 								</p>
 							</div>
-							<p class="initiative__text--secondary pt-1">
-								John
-								<span><img src="./assets/images/icons/quote2.svg" alt="quote" /></span>
+						</div>
+						<div class="initiative__section--two">
+							<p class="pt-4 md:pl-2 text-primary">
+								Morbi nec nunc augue. Pellentesque habitant
+								morbi tristique senectus et netus et malesuada
+								fames ac turpis egestas. Donec sit amet
+								venenatis ex, condimentum hendrerit elit. Fusce
+								ipsum justo, euismod non libero id, tristique
+								efficitur risus. In non maximus dolor. Duis nec
+								libero ac turpis ultrices bibendum eu et leo.
+								Phasellus suscipit purus nunc, ut rhoncus lacus
+								luctus eget.
+							</p>
+							<p class="pt-4 md:pl-2 text-primary">
+								Mauris at sem maximus, mattis dolor quis,
+								eleifend orci. Nunc placerat libero eget euismod
+								faucibus. Sed quis lacinia purus. Fusce
+								vulputate risus sed sem elementum, ut suscipit
+								nulla condimentum. Mauris non justo at purus
+								ornare vestibulum. Class aptent taciti sociosqu
+								ad litora torquent per conubia nostra, per
+								inceptos himenaeos. Nulla vehicula, diam sit
+								amet consectetur egestas, turpis odio egestas
+								est, ac rutrum dui massa et felis.
+							</p>
+							<p class="pt-4 md:pl-2 text-primary">
+								Nulla congue nisl justo, et dictum velit
+								dignissim vitae. Vivamus maximus arcu erat, vel
+								pellentesque dolor pharetra et. Duis ornare
+								pretium nisl, ut commodo lectus vestibulum ac.
+								Mauris ultrices luctus consequat. Fusce molestie
+								diam neque, vel consequat leo imperdiet vitae.
+							</p>
+							<p class="pt-4 pb-4 md:pl-2 text-primary">
+								Morbi egestas nunc quis scelerisque aliquam.
+								Nulla ut mi a ante iaculis convallis. Cras
+								convallis commodo nulla eu lobortis. Sed sed
+								ullamcorper quam, sit amet gravida lacus.
 							</p>
 						</div>
-					</div>
-					<div class="initiative__section--two">
-						<p class="pt-4 md:pl-2 text-primary">
-							Morbi nec nunc augue. Pellentesque habitant morbi tristique
-							senectus et netus et malesuada fames ac turpis egestas. Donec
-							sit amet venenatis ex, condimentum hendrerit elit. Fusce ipsum
-							justo, euismod non libero id, tristique efficitur risus. In non
-							maximus dolor. Duis nec libero ac turpis ultrices bibendum eu et
-							leo. Phasellus suscipit purus nunc, ut rhoncus lacus luctus
-							eget.
-						</p>
-						<p class="pt-4 md:pl-2 text-primary">
-							Mauris at sem maximus, mattis dolor quis, eleifend orci. Nunc
-							placerat libero eget euismod faucibus. Sed quis lacinia purus.
-							Fusce vulputate risus sed sem elementum, ut suscipit nulla
-							condimentum. Mauris non justo at purus ornare vestibulum. Class
-							aptent taciti sociosqu ad litora torquent per conubia nostra,
-							per inceptos himenaeos. Nulla vehicula, diam sit amet
-							consectetur egestas, turpis odio egestas est, ac rutrum dui
-							massa et felis.
-						</p>
-						<p class="pt-4 md:pl-2 text-primary">
-							Nulla congue nisl justo, et dictum velit dignissim vitae.
-							Vivamus maximus arcu erat, vel pellentesque dolor pharetra et.
-							Duis ornare pretium nisl, ut commodo lectus vestibulum ac.
-							Mauris ultrices luctus consequat. Fusce molestie diam neque, vel
-							consequat leo imperdiet vitae.
-						</p>
-						<p class="pt-4 pb-4 md:pl-2 text-primary">
-							Morbi egestas nunc quis scelerisque aliquam. Nulla ut mi a ante
-							iaculis convallis. Cras convallis commodo nulla eu lobortis. Sed
-							sed ullamcorper quam, sit amet gravida lacus.
-						</p>
-					</div>
-				</article>
-			</div>
-		</section>
-		<!-- PANEL SECTION -->
-		<section class="panel container-wide">
-			<div class="panel__box pl-2 pr-2 md:pl-0 md:pr-0">
-				<h2 class="panel__box--title-primary">
-					Phasellus consectetur ex sed bibendum porta. Cras
-					<span class="panel__box--title-secondary">pellentesque pretium</span>
-					lectus sit amet imperdiet
-				</h2>
-			</div>
-		</section>
-		<!-- SERVICES SECTION -->
-		<section class="services-section">
-			<div class="container services-section__box pt-5 xl:pt-3 pb-4">
-				<div class="services-section__text xl:pt-4">
-					<h2 class="services-section__title">Services</h2>
-					<p class="services-section__description">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-						semper molestie mi tempor aliquam.
-					</p>
+					</article>
 				</div>
-				<div class="services-section__cards pt-3 lg:pt-0">
-					<div class="services-section__card services-section__card--primary">
-						<img src="./assets/images/services_1.png" alt="Renewable energy" class="services-section__card-image" />
-						<div class="services-section__card-content">
-							<h3 class="services-section__card-title">Renewable energy</h3>
-							<button class="btn-primary">Learn More</button>
-						</div>
-					</div>
-					<div class="services-section__card services-section__card--secondary pt-3 md:pt-0">
-						<img src="./assets/images/services_2.png" alt="Water Filter" class="services-section__card-image" />
-						<div class="services-section__card-content">
-							<h3 class="services-section__card-title">Water Filter</h3>
-							<p class="services-section__card-description">Coming soon</p>
-						</div>
-					</div>
+			</section>
+			<!-- PANEL SECTION -->
+			<section class="panel container--wide">
+				<div class="panel__box pl-2 pr-2 md:pl-0 md:pr-0">
+					<h2 class="panel__box--title-primary">
+						Phasellus consectetur ex sed bibendum porta. Cras
+						<span class="panel__box--title-secondary"
+							>pellentesque pretium</span
+						>
+						lectus sit amet imperdiet
+					</h2>
 				</div>
-			</div>
-		</section>
-		<!-- BENEFITS SECTION -->
-		<section class="benefits-section">
-			<h2 class="benefits-section__title pt-5 pb-5">Benefits</h2>
-			<div class="benefits container pb-5">
-				<div class="benefits__box">
-					<h2 class="benefits__title pt-5 pb-5">Benefits</h2>
-					<div class="benefits__item benefits__item--expended" id="environmental">
-						<div class="benefits__header">
-							<h3 class="benefits__subtitle">
-								<span class="benefits__subtitle--num">01</span> Environmental
-							</h3>
-							<div class="benefits__arrow">
-								<span class="benefits__icon">&darr;</span>
-								<span class="benefits__icon-tablet">&rarr;</span>
+			</section>
+			<!-- SERVICES SECTION -->
+			<section class="services-section">
+				<div class="container services-section__box pt-5 xl:pt-3 pb-4">
+					<div class="services-section__text xl:pt-4">
+						<h2 class="services-section__title">Services</h2>
+						<p class="services-section__description">
+							Lorem ipsum dolor sit amet, consectetur adipiscing
+							elit. Donec semper molestie mi tempor aliquam.
+						</p>
+					</div>
+					<div class="services-section__cards pt-3 lg:pt-0">
+						<div
+							class="services-section__card services-section__card--primary">
+							<img
+								src="./assets/images/services_1.png"
+								alt="Renewable energy"
+								class="services-section__card-image" />
+							<div class="services-section__card-content">
+								<h3 class="services-section__card-title">
+									Renewable energy
+								</h3>
+								<button class="btn-primary">Learn More</button>
 							</div>
 						</div>
-						<div class="benefits__content">
-							<p>
-								Fusce ipsum justo, euismod non libero id, tristique efficitur
-								risus. In non maximus dolor. Duis nec libero ac turpis ultrices
-								bibendum eu et leo. Phasellus suscipit purus nunc, ut rhoncus
-								lacus luctus eget. Mauris at sem maximus, mattis dolor quis,
-								eleifend orci. Nunc placerat libero eget euismod faucibus.
-							</p>
-						</div>
-					</div>
-					<div class="benefits__item benefits__item--collapsed" id="economic">
-						<div class="benefits__header">
-							<h3 class="benefits__subtitle">
-								<span class="benefits__subtitle--num">02</span>Economic
-							</h3>
-							<div class="benefits__arrow">
-								<span class="benefits__icon">&darr;</span>
-								<span class="benefits__icon-tablet">&rarr;</span>
+						<div
+							class="services-section__card services-section__card--secondary pt-3 md:pt-0">
+							<img
+								src="./assets/images/services_2.png"
+								alt="Water Filter"
+								class="services-section__card-image" />
+							<div class="services-section__card-content">
+								<h3 class="services-section__card-title">
+									Water Filter
+								</h3>
+								<p class="services-section__card-description">
+									Coming soon
+								</p>
 							</div>
 						</div>
-						<div class="benefits__content">
-							<p>
-								Fusce ipsum justo, euismod non libero id, tristique efficitur
-								risus. In non maximus dolor. Duis nec libero ac turpis ultrices
-								bibendum eu et leo. Phasellus suscipit purus nunc, ut rhoncus
-								lacus luctus eget. Mauris at sem maximus, mattis dolor quis,
-								eleifend orci. Nunc placerat libero eget euismod faucibus.
-							</p>
-						</div>
 					</div>
-					<div class="benefits__item benefits__item--collapsed" id="tax">
-						<div class="benefits__header">
-							<h3 class="benefits__subtitle">
-								<span class="benefits__subtitle--num">03</span> Tax
-							</h3>
-							<div class="benefits__arrow">
-								<span class="benefits__icon">&darr;</span>
-								<span class="benefits__icon-tablet">&rarr;</span>
+				</div>
+			</section>
+			<!-- BENEFITS SECTION -->
+			<section class="benefits-section">
+				<h2 class="benefits-section__title pt-5 pb-5">Benefits</h2>
+				<div class="benefits container pb-5">
+					<div class="benefits__box">
+						<h2 class="benefits__title pt-5 pb-5">Benefits</h2>
+						<div
+							class="benefits__item benefits__item--expended"
+							id="environmental">
+							<div class="benefits__header">
+								<h3 class="benefits__subtitle">
+									<span class="benefits__subtitle--num"
+										>01</span
+									>
+									Environmental
+								</h3>
+								<div class="benefits__arrow">
+									<span class="benefits__icon">&darr;</span>
+									<span class="benefits__icon-tablet"
+										>&rarr;</span
+									>
+								</div>
+							</div>
+							<div class="benefits__content">
+								<p>
+									Fusce ipsum justo, euismod non libero id,
+									tristique efficitur risus. In non maximus
+									dolor. Duis nec libero ac turpis ultrices
+									bibendum eu et leo. Phasellus suscipit purus
+									nunc, ut rhoncus lacus luctus eget. Mauris
+									at sem maximus, mattis dolor quis, eleifend
+									orci. Nunc placerat libero eget euismod
+									faucibus.
+								</p>
 							</div>
 						</div>
-						<div class="benefits__content">
+						<div
+							class="benefits__item benefits__item--collapsed"
+							id="economic">
+							<div class="benefits__header">
+								<h3 class="benefits__subtitle">
+									<span class="benefits__subtitle--num"
+										>02</span
+									>Economic
+								</h3>
+								<div class="benefits__arrow">
+									<span class="benefits__icon">&darr;</span>
+									<span class="benefits__icon-tablet"
+										>&rarr;</span
+									>
+								</div>
+							</div>
+							<div class="benefits__content">
+								<p>
+									Fusce ipsum justo, euismod non libero id,
+									tristique efficitur risus. In non maximus
+									dolor. Duis nec libero ac turpis ultrices
+									bibendum eu et leo. Phasellus suscipit purus
+									nunc, ut rhoncus lacus luctus eget. Mauris
+									at sem maximus, mattis dolor quis, eleifend
+									orci. Nunc placerat libero eget euismod
+									faucibus.
+								</p>
+							</div>
+						</div>
+						<div
+							class="benefits__item benefits__item--collapsed"
+							id="tax">
+							<div class="benefits__header">
+								<h3 class="benefits__subtitle">
+									<span class="benefits__subtitle--num"
+										>03</span
+									>
+									Tax
+								</h3>
+								<div class="benefits__arrow">
+									<span class="benefits__icon">&darr;</span>
+									<span class="benefits__icon-tablet"
+										>&rarr;</span
+									>
+								</div>
+							</div>
+							<div class="benefits__content">
+								<p>
+									Fusce ipsum justo, euismod non libero id,
+									tristique efficitur risus. In non maximus
+									dolor. Duis nec libero ac turpis ultrices
+									bibendum eu et leo. Phasellus suscipit purus
+									nunc, ut rhoncus lacus luctus eget. Mauris
+									at sem maximus, mattis dolor quis, eleifend
+									orci. Nunc placerat libero eget euismod
+									faucibus.
+								</p>
+							</div>
+						</div>
+					</div>
+					<!-- SHARED AREA -->
+					<div class="benefits__content-container">
+						<div
+							id="environmental"
+							class="benefits__content-secondary benefits__content-secondary--active">
 							<p>
-								Fusce ipsum justo, euismod non libero id, tristique efficitur
-								risus. In non maximus dolor. Duis nec libero ac turpis ultrices
-								bibendum eu et leo. Phasellus suscipit purus nunc, ut rhoncus
-								lacus luctus eget. Mauris at sem maximus, mattis dolor quis,
-								eleifend orci. Nunc placerat libero eget euismod faucibus.
+								Fusce ipsum justo, euismod non libero id,
+								tristique efficitur risus. In non maximus dolor.
+								Duis nec libero ac turpis ultrices bibendum eu
+								et leo. Phasellus suscipit purus nunc, ut
+								rhoncus lacus luctus eget. Mauris at sem
+								maximus, mattis dolor quis, eleifend orci. Nunc
+								placerat libero eget euismod faucibus.1
+							</p>
+						</div>
+						<div id="economic" class="benefits__content-secondary">
+							<p>
+								Fusce ipsum justo, euismod non libero id,
+								tristique efficitur risus. In non maximus dolor.
+								Duis nec libero ac turpis ultrices bibendum eu
+								et leo. Phasellus suscipit purus nunc, ut
+								rhoncus lacus luctus eget. Mauris at sem
+								maximus, mattis dolor quis, eleifend orci. Nunc
+								placerat libero eget euismod faucibus.2
+							</p>
+						</div>
+						<div id="tax" class="benefits__content-secondary">
+							<p>
+								Fusce ipsum justo, euismod non libero id,
+								tristique efficitur risus. In non maximus dolor.
+								Duis nec libero ac turpis ultrices bibendum eu
+								et leo. Phasellus suscipit purus nunc, ut
+								rhoncus lacus luctus eget. Mauris at sem
+								maximus, mattis dolor quis, eleifend orci. Nunc
+								placerat libero eget euismod faucibus.3
 							</p>
 						</div>
 					</div>
 				</div>
-				<!-- SHARED AREA -->
-				<div class="benefits__content-container">
-
-					<div id="environmental" class="benefits__content-secondary benefits__content-secondary--active">
-						<p>
-							Fusce ipsum justo, euismod non libero id, tristique efficitur risus. In non maximus dolor. Duis nec libero
-							ac turpis ultrices bibendum eu et leo. Phasellus suscipit purus nunc, ut rhoncus lacus luctus eget. Mauris
-							at sem maximus, mattis dolor quis, eleifend orci. Nunc placerat libero eget euismod faucibus.1
+			</section>
+			<!-- CAROUSEL SECTION -->
+			<section class="carousel container--wide">
+				<div class="carousel__description pt-5 pb-3 md:pt-0 md:pb-0">
+					<div class="carousel__description-box">
+						<img
+							class="carousel__description-img"
+							src="./assets/images/icons/quote1.svg"
+							alt="quote" />
+						<p class="carousel__description-text">
+							Lorem ipsum dolor sit amet, consectetur adipiscing
+							elit. Donec semper molestie mi tempor aliquam. Etiam
+							quis dolor scelerisque, laoreet justo vel, cursus
+							purus. Phasellus commodo libero odio, sit amet
+							gravida elit placerat eget.
 						</p>
-					</div>
-					<div id="economic" class="benefits__content-secondary">
-						<p>
-							Fusce ipsum justo, euismod non libero id, tristique efficitur risus. In non maximus dolor. Duis nec libero
-							ac turpis ultrices bibendum eu et leo. Phasellus suscipit purus nunc, ut rhoncus lacus luctus eget. Mauris
-							at sem maximus, mattis dolor quis, eleifend orci. Nunc placerat libero eget euismod faucibus.2
-						</p>
-					</div>
-					<div id="tax" class="benefits__content-secondary">
-						<p>
-							Fusce ipsum justo, euismod non libero id, tristique efficitur risus. In non maximus dolor. Duis nec libero
-							ac turpis ultrices bibendum eu et leo. Phasellus suscipit purus nunc, ut rhoncus lacus luctus eget. Mauris
-							at sem maximus, mattis dolor quis, eleifend orci. Nunc placerat libero eget euismod faucibus.3
-						</p>
+						<img
+							class="carousel__description-img-second"
+							src="./assets/images/icons/quote2.svg"
+							alt="quote" />
 					</div>
 				</div>
-			</div>
-		</section>
-	</main>
-</body>
-
+				<div class="carousel__people">
+					<div class="carousel__people-box">
+						<img
+							class="carousel__people-img"
+							src=""
+							alt="User Image" />
+						<p class="carousel__people-name">Test</p>
+					</div>
+					<div class="carousel__people-navigation">
+						<img
+							id="prev"
+							src="./assets/images/icons/arrow-back-2.svg"
+							alt="Previous arrow" />
+						<img
+							id="next"
+							src="./assets/images/icons/arrow-forward-1.svg"
+							alt="Next arrow" />
+					</div>
+				</div>
+			</section>
+		</main>
+	</body>
 </html>
